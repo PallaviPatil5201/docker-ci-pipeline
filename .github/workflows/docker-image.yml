@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: pallavipatil107/devops-ci-demo-2026
 
 on:
   push:
