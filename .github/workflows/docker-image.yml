@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      env:
+        USER: ${{ secrets.USER }}
+        PASS: ${{ secrets.PASS }}   
+      run: |        
+     
+        docker build . --file Dockerfile --tag pallavipatil107/devops-ci-demo-2026:v1
+        echo $PASS | docker login -u $USER --password-stdin       
+        docker push pallavipatil107/devops-ci-demo-2026:v1
